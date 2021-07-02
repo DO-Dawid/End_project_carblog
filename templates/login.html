@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="container">
+    <div class="message">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    <section class="login-page">
+        <h2>Zaloguj się</h2>
+        <form method="POST">
+        {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="email" placeholder="Email" />
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Hasło" />
+            </div>
+            {% for message in messages %}
+            <p id="messages">{{ message }}</p>
+            {% endfor %}
+            <div class="form-group">
+                <a href="{% url 'register' %}" class="link-btn">Załóż konto</a>
+                <button class="btn" type="submit">Zaloguj się</button>
+            </div>
+        </form>
+    </section>
+</div>
+{% endblock %}

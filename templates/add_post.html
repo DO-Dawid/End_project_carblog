@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="container">
+    <div id="comments">
+        <div class="comments">
+            <form method="post">
+                {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.name.label }} - {{ form.name }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.mark.label }} - {{ form.mark }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.short_text.label }} - {{ form.short_text }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.text.label }} - {{ form.text }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.post_type.label }} - {{ form.post_type }}
+                    </div>
+                    <hr>
+                <input class="btn" type="submit" value="Utwórz post">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

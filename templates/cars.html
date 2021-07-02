@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block header %}
+<header>
+    <nav class="container">
+        <ul id="login">
+            {% if request.user.is_anonymous == True %}
+                <li class="login"><a href="{% url 'login' %}">Zaloguj</a></li>
+                <li class="login"><a href="{% url 'register' %}">Załóż konto</a></li>
+            {% else %}
+                <li class="welcome"><p>Witaj, {{ request.user }}</p></li>
+                <li class="login"><a href="{% url 'logout' %}">Wyloguj</a></li>
+            {% endif %}
+        </ul>
+        <ul id="menu">
+            <li class="menu"><a href="{% url 'home' %}">Posty</a></li>
+            <li class="menu"><a href="{% url 'cars' %}">Samochody</a></li>
+            <li class="menu"><a href="{% url 'add_car' %}">Dodaj samochód</a></li>
+            <li class="menu"><a href="{% url 'home' %}#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+{% endblock %}
+{% block content %}
+    <div class="message">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    <div id="container">
+        <div id="cars">
+            <div class="comments">
+                <ul>
+                    {% for car in cars2 %}
+                        <li>
+                            <h1><a href="{% url 'car_detail' car.pk %}">{{ car.get_mark_display }} - {{ car.model }} - {{ car.generation }}</a></h1>
+                            <hr>
+                            <p>Typ samochodu: <span>{{ car.get_type_of_car_display }}</span></p>
+                            <p>Pojemność silnika: <span>{{ car.engine }}cc</span></p>
+                            <p>Rodzaj paliwa: <span>{{ car.get_fuel_display }}</span></p>
+                            <p>Napęd: <span>{{ car.get_drive_display }}</span></p>
+                            <p>Spalanie: <span>{{ car.combustion }}l na 100km</span></p>
+                            <hr><br><br>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

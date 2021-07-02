@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="container">
+    <section class="login-page">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.first_name.label }}
+                {{ form.first_name }}
+            </div>
+            <div class="form-group">
+                {{ form.last_name.label }}
+                {{ form.last_name }}
+            </div>
+            <div class="form-group">
+                {{ form.username.label }}
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                {{ form.password1.label }}
+                {{ form.password1 }}
+            </div>
+            <div class="form-group">
+                {{ form.password2.label }}
+                {{ form.password2 }}
+            </div>
+            <hr>
+            <div class="form-group">
+                <a href="{% url 'login' %}" class="link-btn">Zaloguj się</a>
+                <button class="btn" type="submit">Załóż konto</button>
+            </div>
+        </form>
+    </section>
+</div>
+{% endblock %}

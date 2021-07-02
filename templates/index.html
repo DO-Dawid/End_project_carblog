@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="container">
+    <div class="message">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    <ul>
+{% for post in posty %}
+    <div id="background_post">
+        <div class="post">
+            <li>
+                <a href="{% url 'post' post.pk %}"><h1>{{ post.name }}</h1></a>
+                <h2>{{ post.user.first_name }}</h2><strong> {{ post.date }} - {{ post.datetime }}</strong>, Samochód marki: {{ post.get_mark_display }}<br><br><strong>{{ post.get_post_type_display }}: </strong>
+                {{ post.short_text }}
+            </li>
+        </div>
+    </div>
+{% endfor %}
+    </ul>
+    </div>
+{% endblock %}

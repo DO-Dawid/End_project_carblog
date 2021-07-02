@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="message">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</div>
+
+{% for post in posts %}
+    <div id="container">
+        <div id="comments">
+            <div class="comments">
+                <h1>{{ post.name }}</h1>
+                <h2>Samochód marki: {{ post.get_mark_display }}</h2>
+                <h3>{{ post.short_text }}</h3>
+                <p>{{ post.text }}</p>
+                <hr><br>
+                <p>
+                    <a href="{% url 'edit' post.pk %}">Edytuj</a> -
+                    <a href="{% url 'delete' post.pk %}">Usuń</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+        
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block header %}
+<header>
+    <nav class="container">
+        <ul id="login">
+            {% if request.user.is_anonymous == True %}
+                <li class="login"><a href="{% url 'login' %}">Zaloguj</a></li>
+                <li class="login"><a href="{% url 'register' %}">Załóż konto</a></li>
+            {% else %}
+                <li class="welcome"><p>Witaj, {{ request.user }}</p></li>
+                <li class="login"><a href="{% url 'logout' %}">Wyloguj</a></li>
+            {% endif %}
+        </ul>
+        <ul id="menu">
+            <li class="menu"><a href="{% url 'home' %}">Posty</a></li>
+            <li class="menu"><a href="{% url 'cars' %}">Samochody</a></li>
+            <li class="menu"><a href="{% url 'add_car' %}">Dodaj samochód</a></li>
+            <li class="menu"><a href="{% url 'home' %}#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+{% endblock %}
+{% block content %}
+<div id="container">
+    <div id="comments">
+        <div class="comments">
+            <form method="POST">
+                {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.mark.label }} - {{ form.mark }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.model.label }} - {{ form.model }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.generation.label }} - {{ form.generation }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.type_of_car.label }} - {{ form.type_of_car }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.fuel.label }} - {{ form.fuel }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.engine.label }} - {{ form.engine }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.combustion.label }} - {{ form.combustion }}
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ form.drive.label }} - {{ form.drive }}
+                    </div>
+                    <hr>
+                <input class="btn" type="submit" value="Dodaj samochód">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
